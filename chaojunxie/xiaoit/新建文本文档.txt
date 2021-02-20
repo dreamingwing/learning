@@ -1,0 +1,94 @@
+#                   新报读后台涉及的核心表
+
+## xhboss_mobile_test
+
+## ssboss_mobile_test
+
+## eduboss_xinghuo_test
+
+## eduboss_twoteacher_test
+
+------------------------------------------------
+
+## 基础架构
+
+client-user-auth  -- 授权服务提供[3000]
+
+client-user-common -- 系统公共模块
+
+​          client-user-common-core  -- 公共工具类核心包
+
+​          client-user-common-datasource -- 动态数据源包
+
+​          client-user-common-job  -- xxl-job 封装
+
+​          client-user-common-log -- 日志服务
+
+​          client-user-common-mybatis  -- mybatis 扩展封装
+
+​          client-user-common-security  -- 安全工具类
+
+​          client-user-common-sentinel -- sentinel 扩展封装
+
+​          client-user-common-swagger -- 接口文档
+
+​          client-user-common-test -- oauth2.0 单元测试扩展封装
+
+client-user-register -- Nacos Server[8848]
+
+client-user-gateway -- Spring Cloud Gateway网关[9999]
+
+client-user-upms -- 通用用户权限管理模块
+
+​          client-user-upms-api -- 通用用户权限管理系统公共api模块
+
+​          client-user-upms-biz -- 通用用户权限管理系统业务处理模块[4000]
+
+client-user-visual 
+
+```
+     └── client-user-monitor -- 服务监控 [5001]
+     ├── client-user-codegen -- 图形化代码生成 [5002]
+     ├── client-user-sentinel-dashboard -- 流量高可用 [5003]
+     └── client-user-xxl-job-admin -- 分布式定时任务管理台 [5004]
+```
+
+ 模块说明         
+
+```
+client-user
+├── client-user-auth -- 授权服务提供[3000]
+└── client-user-common -- 系统公共模块
+     ├── client-user-common-core -- 公共工具类核心包
+     ├── client-user-common-datasource -- 动态数据源包
+     ├── client-user-common-job -- xxl-job 封装
+     ├── client-user-common-log -- 日志服务
+     ├── client-user-common-mybatis -- mybatis 扩展封装
+     ├── client-user-common-security -- 安全工具类
+     ├── client-user-common-swagger -- 接口文档
+     ├── client-user-common-sentinel -- sentinel 扩展封装
+     └── client-user-common-test -- oauth2.0 单元测试扩展封装
+├── client-user-register -- Nacos Server[8848]
+├── client-user-gateway -- Spring Cloud Gateway网关[9999]
+└── client-user-upms -- 通用用户权限管理模块
+     └── client-user-upms-api -- 通用用户权限管理系统公共api模块
+     └── client-user-upms-biz -- 通用用户权限管理系统业务处理模块[4000]
+└── client-user-visual
+     └── client-user-monitor -- 服务监控 [5001]
+     ├── client-user-codegen -- 图形化代码生成 [5002]
+     ├── client-user-sentinel-dashboard -- 流量高可用 [5003]
+     └── client-user-xxl-job-admin -- 分布式定时任务管理台 [5004]
+```
+
+host文件中配置：
+
+~~~java
+127.0.0.1   client-user-redis
+127.0.0.1   client-user-gateway
+127.0.0.1   client-user-register
+127.0.0.1   client-user-sentinel
+127.0.0.1   client-user-job
+~~~
+
+
+

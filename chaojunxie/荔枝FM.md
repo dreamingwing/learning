@@ -23,3 +23,15 @@
 3、数据量非常大的情况下   采用什么方式进行幂等校验。
 
 4、Hystrix的服务熔断和服务降级
+
+
+    //如有自定义的老师头像 优先显示
+            List<GetTeacherPhotoRespDTO> teacherPhotoDTOS = teacherService.getTeacherPhoto(teacherList.stream().map(x -> x.getId()).collect(Collectors.toList()));
+            if(CollUtil.isNotEmpty(teacherPhotoDTOS)) {
+                Map<String, GetTeacherPhotoRespDTO> teacherPhotoRespDTOMap = teacherPhotoDTOS.stream()
+                        .collect(Collectors.toMap(x -> x.getTeacherId(), Function.identity(), (n, o) -> o));
+                teacherList.forEach(x ->  x.setPicUrl(Optional.ofNullable(teacherPhotoRespDTOMap.get(x.getId()))
+                        .filter(t -> StringUtils.isNotBlank(t.getTeacherPhotoUrl()))
+                        .map(t -> t.getTeacherPhotoUrl())
+                        .orElse(x.getPicUrl())));
+            }
